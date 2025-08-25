@@ -5,7 +5,6 @@ from utils.chunker import get_chunks
 from utils.summarizer import summarize_chunks
 from utils.cleaner import clean_text
 import os
-import streamlit as st
 from huggingface_hub import login
 
 st.set_page_config(page_title="YouTube Summarizer", page_icon="📺", layout="wide")
@@ -14,20 +13,20 @@ st.title("🎬 YouTube Video Summarizer")
 st.write("Paste a **YouTube video link (English only)** and get a short summary.")
 url = st.text_input("Enter YouTube video URL:")
 
-def _get_hf_token():
-    return (
-        st.secrets.get("HF_TOKEN")
-        or st.secrets.get("HUGGINGFACE_HUB_TOKEN")
-        or os.environ.get("HF_TOKEN")
-        or os.environ.get("HUGGINGFACE_HUB_TOKEN")
-    )
+# def _get_hf_token():
+#     return (
+#         st.secrets.get("HF_TOKEN")
+#         or st.secrets.get("HUGGINGFACE_HUB_TOKEN")
+#         or os.environ.get("HF_TOKEN")
+#         or os.environ.get("HUGGINGFACE_HUB_TOKEN")
+#     )
 
-token = _get_hf_token()
-if token:
-    login(token=token)
-    os.environ["HUGGINGFACE_HUB_TOKEN"] = token
-else:
-    st.warning("لم يتم العثور على HF_TOKEN في Secrets. قد تواجه Rate-limit أثناء تحميل النماذج.")
+# token = _get_hf_token()
+# if token:
+#     login(token=token)
+#     os.environ["HUGGINGFACE_HUB_TOKEN"] = token
+# else:
+#     st.warning("لم يتم العثور على HF_TOKEN في Secrets. قد تواجه Rate-limit أثناء تحميل النماذج.")
 
 if st.button("Generate Summary"):
     if url:

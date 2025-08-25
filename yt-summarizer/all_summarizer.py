@@ -5,7 +5,6 @@ from utils.chunker import get_chunks
 from utils.summarizer import summarize_chunks
 from utils.cleaner import clean_text
 import os
-import streamlit as st
 from huggingface_hub import login
 
 st.set_page_config(page_title="YouTube Summarizer", page_icon="📺", layout="wide")
