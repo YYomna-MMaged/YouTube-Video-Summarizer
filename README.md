@@ -1,8 +1,12 @@
 # 📺 YouTube Video Summarizer
 
 A Streamlit web application that allows you to **summarize YouTube videos** easily.  
-It extracts the transcript of a video, optionally translates it to English, and then generates a clean, concise summary using HuggingFace models.
+It extracts the transcript of a video, translates it to English if needed, and then generates a clean, concise summary using HuggingFace models.
+Try Now: [yyomna-mmaged-youtube-video--yt-summarizereng-summarizer-j4tyhb.streamlit.app/](https://yyomna-mmaged-youtube-video--yt-summarizereng-summarizer-j4tyhb.streamlit.app/)
 
+> **⚠️ Note:**  
+> The deployed version currently summarizes **only English transcripts**, since it uses the Facebook summarization model ([facebook/bart-large-cnn](https://huggingface.co/facebook/bart-large-cnn)).
+- To see whole code check the notebook
 ---
 
 ## 🚀 Features
@@ -12,21 +16,24 @@ It extracts the transcript of a video, optionally translates it to English, and 
 - Summarizes long transcripts into concise text.
 - User-friendly **Streamlit web interface**.
 
+> **Note:** The deployed application only supports English texts. To see the full project, please see the notebook.
+
 ---
 
 ## 📂 Project Structure
-yt_summarizer/
-│── utils/
-│ ├── extractor.py # Extracts video ID and transcript
-│ ├── chunker.py # Splits transcript into chunks
-│ ├── translator.py # Detects and translates language
-│ ├── summarizer.py # Summarizes chunks using HuggingFace
-│ ├── cleaner.py # Cleans and formats final summary
-│
-│── all_summarizer.py # Main Streamlit application
-│── requirements.txt # Project dependencies
 
----
+```bash
+yt_summarizer/
+├── utils/
+│   ├── extractor.py      # Extracts video ID and transcript
+│   ├── chunker.py        # Splits transcript into chunks
+│   ├── translator.py     # Detects and translates language
+│   ├── summarizer.py     # Summarizes chunks using HuggingFace
+│   ├── cleaner.py        # Cleans and formats final summary
+│
+├── all_summarizer.py     # Main Streamlit application
+├── requirements.txt      # Project dependencies
+
 
 ## 🛠️ Installation
 
@@ -35,37 +42,19 @@ yt_summarizer/
    git clone https://github.com/YYomna-MMaged/YouTube-Video-Summarizer.git
    cd YouTube-Video-Summarizer/yt_summarizer
 
+```bash
 python -m venv .venv
 source .venv/bin/activate   # Linux/Mac
 .venv\Scripts\activate      # Windows
 
 pip install -r requirements.txt
 
-## 🔑 HuggingFace Token Setup
-This project uses HuggingFace models.  
-You need an access token:
-
-1. Create a token from [HuggingFace Tokens](https://huggingface.co/settings/tokens) with **Read access**.  
-2. In **Streamlit Cloud**, go to **Settings → Secrets** and add:
-   ```toml
-   HF_TOKEN = "your_token_here"
-3. The app will automatically load this token.
-
 ## 🌐 Deployment (Streamlit Cloud)
 1. Push your code to GitHub.  
 2. Go to [Streamlit Cloud](https://share.streamlit.io/).  
 3. Deploy the repo and set:  
-   - **Main file path:** `yt_summarizer/all_summarizer.py`  
-   - **Secrets:** Add your `HF_TOKEN`.  
+   - **Main file path:** `yt_summarizer/eng_summarizer.py`  
 4. Your app will be live online 🎉  
-
----
-
-## 📸 Example Workflow
-1. Enter YouTube video URL.  
-2. Fetch transcript (auto-detected language).  
-3. Translate (if not English).  
-4. Generate and display summary.  
 
 ---
 
