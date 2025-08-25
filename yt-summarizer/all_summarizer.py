@@ -45,16 +45,17 @@ if st.button("Generate Summary"):
             st.write(transcript[:500] + "...")
 
             chunks = get_chunks(transcript)
-            original_language = get_lang_code(chunks[0])
+            # original_language = get_lang_code(chunks[0])
 
-            if not original_language.startswith("en"):
-                translated_chunks = [translate(chunk, original_language, "eng_Latn") for chunk in chunks]
-            else:
-                translated_chunks = chunks
+            # if not original_language.startswith("en"):
+            #     translated_chunks = [translate(chunk, original_language, "eng_Latn") for chunk in chunks]
+            # else:
+            #     translated_chunks = chunks
 
-            with st.spinner("Summarizing..."):
-                summary = summarize_chunks(translated_chunks)
+            # with st.spinner("Summarizing..."):
+            #     summary = summarize_chunks(translated_chunks)
 
+            summary = summarize_chunks(chunks)
             cleaned_final = clean_text(summary)
 
             st.subheader("✨ Final Summary")
