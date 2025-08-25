@@ -1,4 +1,4 @@
-streamlit
+streamlit>=1.30
 regex
 youtube-transcript-api
 urllib3
@@ -7,3 +7,4 @@ torch
 langdetect
 langcodes
 accelerate
+huggingface-hub

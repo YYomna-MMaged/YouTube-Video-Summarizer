@@ -4,10 +4,15 @@ from utils.chunker import get_chunks
 from utils.translator import get_lang_code, translate
 from utils.summarizer import summarize_chunks
 from utils.cleaner import clean_text
-
 import os
 import streamlit as st
 from huggingface_hub import login
+
+st.set_page_config(page_title="YouTube Summarizer", page_icon="📺", layout="wide")
+
+st.title("🎬 YouTube Video Summarizer")
+st.write("Paste a **YouTube video link (English only)** and get a short summary.")
+url = st.text_input("Enter YouTube video URL:")
 
 def _get_hf_token():
     return (
@@ -23,13 +28,6 @@ if token:
     os.environ["HUGGINGFACE_HUB_TOKEN"] = token
 else:
     st.warning("لم يتم العثور على HF_TOKEN في Secrets. قد تواجه Rate-limit أثناء تحميل النماذج.")
-
-
-st.set_page_config(page_title="YouTube Summarizer", page_icon="📺", layout="wide")
-
-st.title("🎬 YouTube Video Summarizer")
-st.write("Paste a **YouTube video link (English only)** and get a short summary.")
-url = st.text_input("Enter YouTube video URL:")
 
 if st.button("Generate Summary"):
     if url:
