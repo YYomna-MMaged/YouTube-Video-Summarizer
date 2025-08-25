@@ -34,7 +34,7 @@ yt_summarizer/
 ├── all_summarizer.py     # Main Streamlit application
 ├── requirements.txt      # Project dependencies
 ```
-
+---
 ## 🛠️ Installation
 
 1. Clone this repository:
@@ -52,7 +52,7 @@ source .venv/bin/activate   # Linux/Mac
 ```bash
 pip install -r requirements.txt
 ``` 
-
+---
 ## 🌐 Deployment (Streamlit Cloud)
 1. Push your code to GitHub.  
 2. Go to [Streamlit Cloud](https://share.streamlit.io/).  
