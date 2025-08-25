@@ -7,7 +7,7 @@ from utils.cleaner import clean_text
 import os
 from huggingface_hub import login
 
-st.set_page_config(page_title="YouTube Summarizer", page_icon="📺", layout="wide")
+st.set_page_config(page_title="YouTube Videos Summarizer", page_icon="📺", layout="wide")
 
 st.title("📺 YouTube Video Summarizer")
 url = st.text_input("Enter YouTube Video URL")
