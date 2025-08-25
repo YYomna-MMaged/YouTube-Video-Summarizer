@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.extractor import extract_id, get_transcript
 from utils.chunker import get_chunks
-# from utils.translator import get_lang_code, translate
+from utils.translator import get_lang_code, translate
 from utils.summarizer import summarize_chunks
 from utils.cleaner import clean_text
 import os
@@ -44,15 +44,15 @@ if st.button("Generate Summary"):
             st.write(transcript[:500] + "...")
 
             chunks = get_chunks(transcript)
-            # original_language = get_lang_code(chunks[0])
+            original_language = get_lang_code(chunks[0])
 
-            # if not original_language.startswith("en"):
-            #     translated_chunks = [translate(chunk, original_language, "eng_Latn") for chunk in chunks]
-            # else:
-            #     translated_chunks = chunks
+            if not original_language.startswith("en"):
+                translated_chunks = [translate(chunk, original_language, "eng_Latn") for chunk in chunks]
+            else:
+                translated_chunks = chunks
 
-            # with st.spinner("Summarizing..."):
-            #     summary = summarize_chunks(translated_chunks)
+            with st.spinner("Summarizing..."):
+                summary = summarize_chunks(translated_chunks)
 
             summary = summarize_chunks(chunks)
             cleaned_final = clean_text(summary)
