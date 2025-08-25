@@ -1,15 +1,11 @@
 import streamlit as st
 from utils.extractor import extract_id, get_transcript
 from utils.chunker import get_chunks
-# from utils.translator import get_lang_code, translate
+from utils.translator import get_lang_code, translate
 from utils.summarizer import summarize_chunks
 from utils.cleaner import clean_text
 import os
 from huggingface_hub import login
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
-from langdetect import detect
-import langcodes
-
 
 st.set_page_config(page_title="YouTube Videos Summarizer", page_icon="📺", layout="wide")
 
@@ -30,28 +26,6 @@ url = st.text_input("Enter YouTube Video URL")
 #     os.environ["HUGGINGFACE_HUB_TOKEN"] = token
 # else:
 #     st.warning("لم يتم العثور على HF_TOKEN في Secrets. قد تواجه Rate-limit أثناء تحميل النماذج.")
-
-
-trans_tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-200-distilled-600M")
-trans_model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M")
-
-def get_lang_code(text: str) -> str:
-    lang_ios_code = detect(text)
-    language = langcodes.Language.get(lang_ios_code)
-    script = language.maximize().script
-    return f"{lang_ios_code}_{script}"
-
-def translate(text, src_lang, tgt_lang="eng_Latn"):
-    translator = pipeline(
-        "translation",
-        model=trans_model,
-        tokenizer=trans_tokenizer,
-        src_lang=src_lang,
-        tgt_lang=tgt_lang,
-        device=0  # 0 = GPU , -1 = CPU
-    )
-    result = translator(text, max_length=400)
-    return result[0]["translation_text"]
 
 if st.button("Generate Summary"):
     if url:
