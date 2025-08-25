@@ -38,16 +38,20 @@ yt_summarizer/
 ## 🛠️ Installation
 
 1. Clone this repository:
-   ```bash
+```bash
    git clone https://github.com/YYomna-MMaged/YouTube-Video-Summarizer.git
    cd YouTube-Video-Summarizer/yt_summarizer
-
+```
+2. Create a virtual environment and activate it:
 ```bash
 python -m venv .venv
 source .venv/bin/activate   # Linux/Mac
 .venv\Scripts\activate      # Windows
-
+```
+3. Install dependencies:
+```bash
 pip install -r requirements.txt
+``` 
 
 ## 🌐 Deployment (Streamlit Cloud)
 1. Push your code to GitHub.  
