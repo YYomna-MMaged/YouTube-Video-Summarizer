@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.extractor import extract_id, get_transcript
 from utils.chunker import get_chunks
-from utils.translator import get_lang_code, translate
+# from utils.translator import get_lang_code, translate
 from utils.summarizer import summarize_chunks
 from utils.cleaner import clean_text
 import os
