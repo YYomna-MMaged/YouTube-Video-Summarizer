@@ -5,6 +5,29 @@ from utils.translator import get_lang_code, translate
 from utils.summarizer import summarize_chunks
 from utils.cleaner import clean_text
 
+import os
+import streamlit as st
+from huggingface_hub import login
+
+def _get_hf_token():
+    # الأول من secrets، ولو مش موجود من متغيرات البيئة
+    return (
+        st.secrets.get("HF_TOKEN")
+        or st.secrets.get("HUGGINGFACE_HUB_TOKEN")
+        or os.environ.get("HF_TOKEN")
+        or os.environ.get("HUGGINGFACE_HUB_TOKEN")
+    )
+
+token = _get_hf_token()
+if token:
+    # يسجّل الـ token لجلسة التحميل
+    login(token=token)
+    # كمان نحطه كمتغير بيئة علشان Transformers تلتقطه تلقائيًا
+    os.environ["HUGGINGFACE_HUB_TOKEN"] = token
+else:
+    st.warning("لم يتم العثور على HF_TOKEN في Secrets. قد تواجه Rate-limit أثناء تحميل النماذج.")
+
+
 st.set_page_config(page_title="YouTube Summarizer", page_icon="📺", layout="wide")
 
 st.title("📺 YouTube Video Summarizer")
