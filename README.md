@@ -2,7 +2,7 @@
 
 A Streamlit web application that allows you to **summarize YouTube videos** easily.  
 It extracts the transcript of a video, translates it to English if needed, and then generates a clean, concise summary using HuggingFace models.
-Try Now: [yyomna-mmaged-youtube-video--yt-summarizereng-summarizer-j4tyhb.streamlit.app/](https://yyomna-mmaged-youtube-video--yt-summarizereng-summarizer-j4tyhb.streamlit.app/)
+- Try Now: [yyomna-mmaged-youtube-video--yt-summarizereng-summarizer-j4tyhb.streamlit.app/](https://yyomna-mmaged-youtube-video--yt-summarizereng-summarizer-j4tyhb.streamlit.app/)
 
 > **⚠️ Note:**  
 > The deployed version currently summarizes **only English transcripts**, since it uses the Facebook summarization model ([facebook/bart-large-cnn](https://huggingface.co/facebook/bart-large-cnn)).
@@ -33,7 +33,7 @@ yt_summarizer/
 │
 ├── all_summarizer.py     # Main Streamlit application
 ├── requirements.txt      # Project dependencies
-
+```
 
 ## 🛠️ Installation
 
